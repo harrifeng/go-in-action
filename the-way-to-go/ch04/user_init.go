@@ -1,11 +1,11 @@
 package main
 
 import (
-	"./trans"
 	"fmt"
+	"github.com/harrifeng/go-in-action/the-way-to-go/ch04/mylib"
 )
 
-var towPi = 2 * trans.Pi
+var twoPi = 2 * trans.Pi
 
 func main() {
 	fmt.Printf("2 * Pi = %g\n", twoPi)
