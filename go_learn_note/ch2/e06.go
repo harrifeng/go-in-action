@@ -8,11 +8,22 @@ func main() {
 
 	for i, v := range s {
 		if i == 0 {
+			// change s's size will not deduced the iteration times
 			s = s[:3]
 			s[2] = 100
 		}
 
-		fmt.Println(i, v)
+		fmt.Println(i, v) // s[2] will changed
 	}
-	fmt.Println(s)
+	fmt.Println(s) // s[2] will changed
 }
+
+////////////////////////////////////////////////////
+// <===================OUTPUT===================> //
+// 0 1											  //
+// 1 2											  //
+// 2 100										  //
+// 3 4											  //
+// 4 5											  //
+// [1 2 100]									  //
+////////////////////////////////////////////////////
