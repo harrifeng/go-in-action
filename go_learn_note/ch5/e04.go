@@ -9,21 +9,26 @@ type User struct {
 
 type Manager struct {
 	User
+	title string
 }
 
 func (self *User) ToString() string {
 	return fmt.Sprintf("User: %p, %v", self, self)
 }
 
-func main() {
-	m := Manager{User{1, "Tom"}}
+func (self *Manager) ToString() string {
+	return fmt.Sprintf("Manager: %p, %v", self, self)
+}
 
-	fmt.Printf("Manager: %p\n", &m)
+func main() {
+	m := Manager{User{1, "Tom"}, "Administrator"}
+
 	fmt.Println(m.ToString())
+	fmt.Println(m.User.ToString())
 }
 
 ////////////////////////////////////////////////////
 // <===================OUTPUT===================> //
-// Manager: 0x820258000							  //
-// User: 0x820258000, &{1 Tom}					  //
+// Manager: 0x8201ec0c0, &{{1 Tom} Administrator} //
+// User: 0x8201ec0c0, &{1 Tom}					  //
 ////////////////////////////////////////////////////
