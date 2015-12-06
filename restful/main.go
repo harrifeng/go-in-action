@@ -24,13 +24,15 @@ func main() {
 		rest.Get("/reminders/:id", i.GetReminder),
 		rest.Put("/reminders/:id", i.PutReminder),
 		rest.Delete("/reminders/:id", i.DeleteReminder),
-		rest.Get("/", CommonFileServer),
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
 	api.SetApp(router)
-	log.Fatal(http.ListenAndServe(":8087", api.MakeHandler()))
+
+	http.Handle("/api/", http.StripPrefix("/api", api.MakeHandler()))
+	http.Handle("/", http.StripPrefix("/", http.FileServer(http.Dir("static"))))
+	log.Fatal(http.ListenAndServe(":8087", nil))
 }
 
 func CommonFileServer(w rest.ResponseWriter, r *rest.Request) {
