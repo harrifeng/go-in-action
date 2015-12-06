@@ -24,12 +24,17 @@ func main() {
 		rest.Get("/reminders/:id", i.GetReminder),
 		rest.Put("/reminders/:id", i.PutReminder),
 		rest.Delete("/reminders/:id", i.DeleteReminder),
+		rest.Get("/", CommonFileServer),
 	)
 	if err != nil {
 		log.Fatal(err)
 	}
 	api.SetApp(router)
 	log.Fatal(http.ListenAndServe(":8087", api.MakeHandler()))
+}
+
+func CommonFileServer(w rest.ResponseWriter, r *rest.Request) {
+	http.FileServer(http.Dir("static")).ServeHTTP(w.(http.ResponseWriter), r.Request)
 }
 
 type Reminder struct {
