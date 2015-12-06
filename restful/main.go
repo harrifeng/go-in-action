@@ -46,7 +46,7 @@ type Impl struct {
 
 func (i *Impl) InitDB() {
 	var err error
-	i.DB, err = gorm.Open("mysql", "root:@/test?charset=utf8&parseTime=True")
+	i.DB, err = gorm.Open("mysql", "root:wyyzmwy@tcp(10.97.31.116:23306)/resttest?charset=utf8&parseTime=True")
 	if err != nil {
 		log.Fatalf("Got error when connect database, the error is '%v'", err)
 	}
