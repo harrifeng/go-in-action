@@ -1,20 +1,37 @@
 package main
 
-import (
-	"fmt"
-	"strings"
-)
+import "fmt"
 
-func add1(r rune) rune { return r + 1 }
+func squares() func() int {
+	var x int
+	return func() int {
+		x++
+		return x * x
+	}
+}
 
 func main() {
+	f := squares()
+	fmt.Println(f())
+	fmt.Println(f())
+	fmt.Println(f())
+	fmt.Println(f())
 
-	fmt.Println(strings.Map(add1, "ABC"))
-	fmt.Println(strings.Map(add1, "WXY"))
+	new_f := squares()
+	fmt.Println(new_f())
+	fmt.Println(new_f())
+	fmt.Println(squares()())
+	fmt.Println(squares()())
 }
 
 ////////////////////////////////////////////////////
 // <===================OUTPUT===================> //
-// BCD											  //
-// XYZ											  //
+// 1											  //
+// 4											  //
+// 9											  //
+// 16											  //
+// 1											  //
+// 4											  //
+// 1											  //
+// 1											  //
 ////////////////////////////////////////////////////

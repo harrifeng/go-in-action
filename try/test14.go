@@ -2,16 +2,16 @@ package main
 
 import "fmt"
 
-func f(...int) {}
-func g([]int)  {}
-
 func main() {
-	fmt.Printf("%T\n", f)
-	fmt.Printf("%T\n", g)
+	var a [4]int = [4]int{1, 2, 3, 4}
+	fmt.Println(a)
+
+	a[1], a[a[1]] = a[a[1]], a[1]
+	fmt.Println(a)
 }
 
 ////////////////////////////////////////////////////
 // <===================OUTPUT===================> //
-// func(...int)									  //
-// func([]int)									  //
+// [1 2 3 4]									  //
+// [1 3 2 4]									  //
 ////////////////////////////////////////////////////
