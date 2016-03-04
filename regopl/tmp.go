@@ -13,17 +13,20 @@ var emp = []Employee{
 	{2, "Bell", 3500},
 }
 
-func EmployeeByID(id int) *Employee {
+func EmployeeByID(id int) Employee {
 	if id == 1 {
-		return &emp[0]
+		return emp[0]
 	}
 	if id == 2 {
-		return &emp[1]
+		return emp[1]
 	}
-	return nil
+	return emp[0]
 }
 
 func main() {
-	EmployeeByID(1).Salary = 24
-	fmt.Println(EmployeeByID(1).Salary)
+	f1 := EmployeeByID(1)
+	f1.Salary = 23
+	fmt.Printf("%x\n", &f1)
+	f2 := EmployeeByID(1)
+	fmt.Printf("%x\n", &f2)
 }
