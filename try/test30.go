@@ -19,10 +19,12 @@ func main() {
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", service)
 	checkError(err)
 
-	// ltcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:6789")
-	// checkError(err)
+	ltcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:789")
+	checkError(err)
 
-	conn, err := net.DialTCP("tcp", nil, tcpAddr)
+	ltcpAddr = nil
+
+	conn, err := net.DialTCP("tcp", ltcpAddr, tcpAddr)
 	checkError(err)
 
 	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
