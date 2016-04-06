@@ -22,9 +22,10 @@ func main() {
 	ltcpAddr, err := net.ResolveTCPAddr("tcp4", "localhost:789")
 	checkError(err)
 
-	ltcpAddr = nil
+	// ltcpAddr = nil
 
 	conn, err := net.DialTCP("tcp", ltcpAddr, tcpAddr)
+	fmt.Println("err is ", err)
 	checkError(err)
 
 	_, err = conn.Write([]byte("HEAD / HTTP/1.0\r\n\r\n"))
