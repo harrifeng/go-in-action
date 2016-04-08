@@ -7,17 +7,14 @@ import (
 	"os"
 )
 
-func messageHandler(message string) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, message)
-	})
+func messageHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Welcome to Go Web Development!")
 }
 
 func main() {
 	mux := http.NewServeMux()
 
-	mux.Handle("/welcome", messageHandler("Welcome to Go Web Development"))
-	mux.Handle("/message", messageHandler("net/http is awesome"))
+	mux.HandleFunc("/welcome", messageHandler)
 
 	log.Println("Listening...")
 
